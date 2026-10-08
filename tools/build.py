@@ -13,7 +13,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from content import EN  # noqa: E402
-from content_more import FAQ, SECURITY  # noqa: E402
+from content_more import COMPARE, FAQ, SECURITY  # noqa: E402
 
 EXTRA = {
     "en": dict(
@@ -195,6 +195,14 @@ h2.plain{font-size:22px;font-weight:700}
 .arch-ext .node::before{content:"\\2195";position:absolute;left:50%;top:-31px;transform:translateX(-50%);font-size:26px;line-height:1;color:var(--accent)}
 .node small{display:block;margin-top:6px;font-size:13px;color:var(--ink-2)}.node small i{font-style:normal;font-weight:600;color:var(--accent)}
 @media (max-width:900px){.arch{grid-template-columns:minmax(0,1fr)}.arch-arrow{transform:rotate(135deg);margin:2px 0}.arch-ext{grid-template-columns:minmax(0,1fr)}.arch-stages{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.cmp{border-collapse:collapse;width:100%;min-width:760px;font-size:15px;line-height:1.55}
+.cmp th,.cmp td{text-align:left;vertical-align:top;padding:14px 18px;border-bottom:1px solid var(--line)}
+.cmp tr:last-child th,.cmp tr:last-child td{border-bottom:0}
+.cmp thead th{font-size:14px;font-weight:700;color:var(--ink);border-bottom:2px solid var(--line)}
+.cmp tbody th{font-weight:600;color:var(--ink);width:22%}.cmp td{color:var(--ink-2);width:24%}
+.cmp .us{background:var(--accent-soft);color:var(--ink);width:30%}.cmp thead .us{color:var(--accent)}
+.cmp-note{font-size:14px;color:var(--ink-2);max-width:60em}
 .closing{padding-block:104px 0}.closing h2.display{font-size:clamp(32px,4.4vw,60px)}
 footer.band{color:var(--band-ink-3)}
 .next{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-block:64px 44px;color:var(--band-ink);text-decoration:none}
@@ -321,8 +329,15 @@ def how(L, X, lang):
 
 def why(L, X, lang):
     tiles = "".join(f'<div class="tile"><h2>{k}</h2><span>{v}</span></div>' for k, v in L["why"])
+    C = COMPARE
+    rows = "".join(
+        f'<tr><th scope="row">{r[0]}</th><td>{r[1]}</td><td>{r[2]}</td><td class="us">{r[3]}</td></tr>' for r in C["rows"]
+    )
     return f"""{pagehead(L, X, lang, "why", L["why_e"], L["why_h"], L["why_p"])}
 <div class="wrap tiles" style="padding-bottom:104px">{tiles}</div></div>
+<section><div class="wrap sec stack" style="gap:32px"><div class="head"><h2 class="display">{C["h"]}</h2><p>{C["p"]}</p></div>
+<div class="cmp-wrap"><table class="cmp"><thead><tr><th scope="col"></th><th scope="col">{C["cols"][0]}</th><th scope="col">{C["cols"][1]}</th><th scope="col" class="us">{C["cols"][2]}</th></tr></thead><tbody>{rows}</tbody></table></div>
+<p class="cmp-note">{C["note"]}</p></div></section>
 <section class="alt"><div class="wrap sec split"><div class="head"><span class="eyebrow">{X["ai_e"]}</span><h2 class="display">{L["ai_h"]}</h2><p>{L["ai_p"]}</p></div>
 <div class="body cells">{cells(L["ai"])}</div></div></section>
 <footer class="band">{footer(L, X, "why")}</footer>"""

@@ -24,7 +24,7 @@ SECURITY = {
                 "A conclusion with too little evidence behind it is withheld.",
                 "Anything that fails a check stops at \"needs review\", with a reason code.",
                 "There is no path that executes a response action without a person approving it.",
-                "A change of model or instructions must pass a replay of known cases first.",
+                "A change to the instructions is detected automatically and has to be approved as a release. Known cases can be replayed to compare quality first.",
             ]),
             ("Console and API", "Signed-in users get what their role allows.", [
                 "Permissions are set per role, per module and per action. The read-only role cannot change anything.",
@@ -73,7 +73,7 @@ FAQ = {
                 ("Can it run without a cloud AI service?", "Yes. Point it at a local model or at a gateway inside your network. The host sets which endpoints MARS may reach."),
                 ("What is sent to the model?", "The evidence MARS gathered for the case: header and body text, links, and the findings of its own checks. Internal mailboxes and account names can be replaced with pseudonyms before sending."),
                 ("Can text in an email change the verdict?", "MARS is designed so that it should not. Attacker text is passed as marked evidence, the reply must fit a fixed format, and a conclusion that cites evidence MARS never collected is rejected. No defence here is absolute, which is why a person approves every action."),
-                ("What happens when the AI is wrong?", "An answer without evidence behind it is held for review instead of published. Analysts can overrule a verdict and record why, and known cases are replayed before any change to the model or its instructions."),
+                ("What happens when the AI is wrong?", "An answer without evidence behind it is held for review instead of published. Analysts can overrule a verdict and record why, and known cases can be replayed to compare quality before a change to the model or its instructions is released."),
             ]),
             ("Using it", [
                 ("Does MARS take action by itself?", "No. It proposes response steps. A person approves them, and MARS then checks the outcome in the external system."),
@@ -90,3 +90,22 @@ FAQ = {
         ],
     ),
 }
+
+COMPARE = dict(
+    h="The same case, handled three ways.",
+    p="Each approach has something it is good at. The rows below are where they differ.",
+    cols=("By hand", "Straight to an AI model", "MARS"),
+    rows=[
+        ("First read of each case", "An analyst, one case at a time.", "The model.", "MARS gathers the evidence, then asks the model."),
+        ("What the model is given", "No model is involved.", "Whatever is pasted in, as written.", "The evidence MARS collected, marked as evidence."),
+        ("Text in an email aimed at the AI", "Does not apply.", "Reads as part of the request.", "Stays data, inside a marked boundary."),
+        ("An answer with nothing behind it", "Depends on the analyst.", "Looks the same as a sound one.", "Rejected, or held for review with a reason."),
+        ("When the evidence is thin", "The analyst escalates.", "Nothing stops it answering.", "The case stays undecided and goes to a person."),
+        ("Response actions", "The analyst carries them out.", "Whatever is built around the model decides.", "Proposed by MARS, approved by a person, checked afterwards."),
+        ("Where case data goes", "It stays in the tools you already use.", "To the model's provider.", "It stays on your host. You choose the model endpoint, a local one included."),
+        ("Record of each decision", "Tickets and notes, where they are kept.", "A chat history.", "A signed audit log, with the evidence behind each verdict."),
+        ("Changing the model or its instructions", "Does not apply.", "Nothing checks what changed.", "A change to the instructions is detected and needs sign-off. Known cases can be replayed to compare quality first."),
+        ("What it takes to run", "Analyst hours that grow with volume.", "Very little.", "A host to operate and Microsoft connections to configure."),
+    ],
+    note="The middle column describes sending case content to a general-purpose model with nothing around it. It does not describe any particular product.",
+)
