@@ -83,7 +83,7 @@ FAQ = {
             ("Licence", [
                 ("What does the AGPL allow?", "You may run MARS, read its source, change it and pass it on, for any purpose and at no charge. The licence comes with no warranty."),
                 ("What does it ask of us in return?", "If you run a modified MARS for people who use it over a network, section 13 of the licence requires you to offer those people the source of your modified version. If you distribute MARS, changed or not, it stays under the same licence. Running MARS unmodified adds no publishing duty."),
-                ("Do we have to publish our settings or data?", "No. The licence covers the program. Your configuration, the mail MARS analyses and the records it keeps are yours and are not source code."),
+                ("Do we have to publish our settings or data?", "No. The licence covers the program. Your configuration, the mail MARS analyses and the records it keeps are yours and are not source code. Code is different: if you change the program, or add code that becomes part of it, you have a modified version and the answer above applies."),
                 ("Does the licence cover everything MARS ships with?", "MARS depends on components with their own copyleft licences, among them PyMuPDF (AGPL-3.0) and extract-msg and pcodedmp (GPL-3.0). The dependency list in the repository names all of them."),
                 ("Is this page legal advice?", "No. It is a summary. The licence text is what binds, so read it, and ask your own counsel if the terms matter to a decision."),
             ]),
