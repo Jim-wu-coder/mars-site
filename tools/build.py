@@ -42,6 +42,9 @@ EXTRA = {
         go="Open",
         next="Next",
         how_e="How it works",
+        arch_h="Where the data goes",
+        arch_p="Everything MARS keeps stays on your host. Two kinds of traffic leave it, and you decide whether either does.",
+        arch_note='The controls on each of these paths are on the <a href="security.html">Security</a> page.',
         ai_e="AI",
         product_e="Product",
         pages_h="Console pages",
@@ -173,6 +176,25 @@ h2.plain{font-size:22px;font-weight:700}
 .qgroup{display:flex;flex-wrap:wrap;gap:20px 56px;padding:44px 0;border-top:1px solid var(--line)}.qgroup:first-child{border-top:0;padding-top:0}
 .qgroup>h2{flex:0 1 220px;font-size:22px;font-weight:700}
 .qa{flex:1.8 1 520px;min-width:0;display:flex;flex-direction:column;gap:30px}.qa h3{font-size:18.5px;font-weight:700;line-height:1.45;margin-bottom:6px}.qa p{font-size:16px;color:var(--ink-2);max-width:44em}
+.arch{display:grid;grid-template-columns:minmax(0,1fr) 28px minmax(0,1.9fr) 28px minmax(0,1fr);gap:20px 0;align-items:start}
+.arch h3{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin-bottom:2px}
+.arch-col{display:flex;flex-direction:column;gap:10px;min-width:0}
+.node{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14.5px;line-height:1.5;color:var(--ink-2);min-width:0}
+.alt .node{background:var(--bg)}.node b{display:block;font-size:15.5px;color:var(--ink)}
+.arch-arrow{align-self:center;justify-self:center;width:14px;height:14px;border-top:2px solid var(--accent);border-right:2px solid var(--accent);transform:rotate(45deg)}
+.arch-host{position:relative;border:2px dashed var(--accent);border-radius:16px;padding:30px 18px 18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.arch-tag{position:absolute;top:-13px;left:18px;background:var(--accent);color:var(--surface);font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:2px 12px}
+.arch-core{background:var(--band);color:var(--band-ink);border:1px solid var(--band-line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.arch-core>b{font-family:var(--mono);letter-spacing:.24em;font-size:15px}
+.arch-stages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;counter-reset:st}
+.arch-stages span{counter-increment:st;background:var(--band-2);border:1px solid var(--band-line);border-radius:8px;padding:10px;font-size:13.5px;line-height:1.4;color:var(--band-ink)}
+.arch-stages span::before{content:counter(st,decimal-leading-zero);display:block;font-family:var(--mono);font-size:11.5px;color:var(--cyan);margin-bottom:2px}
+.arch-mid{display:flex;flex-direction:column;gap:6px;min-width:0}
+.arch-ext{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.arch-ext .node{position:relative;margin-top:30px}
+.arch-ext .node::before{content:"\\2195";position:absolute;left:50%;top:-31px;transform:translateX(-50%);font-size:26px;line-height:1;color:var(--accent)}
+.node small{display:block;margin-top:6px;font-size:13px;color:var(--ink-2)}.node small i{font-style:normal;font-weight:600;color:var(--accent)}
+@media (max-width:900px){.arch{grid-template-columns:minmax(0,1fr)}.arch-arrow{transform:rotate(135deg);margin:2px 0}.arch-ext{grid-template-columns:minmax(0,1fr)}.arch-stages{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .closing{padding-block:104px 0}.closing h2.display{font-size:clamp(32px,4.4vw,60px)}
 footer.band{color:var(--band-ink-3)}
 .next{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-block:64px 44px;color:var(--band-ink);text-decoration:none}
@@ -274,6 +296,26 @@ def how(L, X, lang):
 <section class="alt"><div class="wrap sec stack"><div class="head"><h2 class="display">{L["cases_h"]}</h2><p>{L["cases_p"]}</p></div>
 <div class="pipes">{pipe(L["mail_h"], L["mail_p"], L["mail"], L["verdict"], L["mail_pills"])}{pipe(L["xdr_h"], L["xdr_p"], L["xdr"], L["klass"], L["xdr_pills"])}</div>
 <div class="gets"><h3>{L["gets_h"]}</h3><ul>{gets}</ul></div></div></section>
+<section><div class="wrap sec stack"><div class="head"><h2 class="display">{X["arch_h"]}</h2><p>{X["arch_p"]}</p></div>
+<div class="arch">
+<div class="arch-col"><h3>Comes in</h3>
+<div class="node"><b>Reporting mailbox</b>Mail your employees report, read from Microsoft 365.</div>
+<div class="node"><b>Uploaded files</b>Message files an analyst submits by hand.</div>
+<div class="node"><b>Defender XDR</b>Incidents and their alerts.</div>
+<div class="node"><b>Defender for Endpoint and Entra ID</b>Device, email and sign-in activity MARS looks up for a case.</div></div>
+<span class="arch-arrow" aria-hidden="true"></span>
+<div class="arch-mid"><div class="arch-host"><span class="arch-tag">Your host</span>
+<div class="arch-core"><b>MARS</b><div class="arch-stages"><span>Gather evidence</span><span>Ask the model</span><span>Check the answer</span><span>Publish or hold for review</span></div></div>
+<div class="node"><b>Local database</b>Analysis records, the signed audit log and settings. Nothing here is stored anywhere else.</div></div>
+<div class="arch-ext">
+<div class="node"><b>Threat intelligence</b>Only the sources you configure.<small><i>Sends</i> indicators such as domains, URLs and file hashes.</small><small><i>Returns</i> reputation and context.</small></div>
+<div class="node"><b>AI model</b>A hosted model, a company gateway or a local model. The host sets which endpoints are allowed.<small><i>Sends</i> the evidence for one case, with internal names replaced if you choose.</small><small><i>Returns</i> a structured answer, which MARS then checks.</small></div></div></div>
+<span class="arch-arrow a2" aria-hidden="true"></span>
+<div class="arch-col out"><h3>Goes out</h3>
+<div class="node"><b>Analyst console</b>Verdicts, evidence and recommended steps, in the browser.</div>
+<div class="node"><b>Notifications</b>Email, Teams or Slack, if you set them up.</div>
+<div class="node"><b>Approved actions</b>Response steps a person has approved, sent through Microsoft's own interfaces.</div></div>
+</div><p style="font-size:15px;color:var(--ink-2)">{X["arch_note"]}</p></div></section>
 <footer class="band">{footer(L, X, "how")}</footer>"""
 
 
