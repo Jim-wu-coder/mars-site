@@ -2,7 +2,7 @@
 
     python3 tools/build.py
 
-Copy lives in tools/content.py. Each page carries both languages; site JS shows one.
+Copy lives in tools/content.py and tools/content_more.py.
 """
 
 from __future__ import annotations
@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from content import EN, ZH  # noqa: E402
+from content import EN  # noqa: E402
 from content_more import FAQ, SECURITY  # noqa: E402
 
 EXTRA = {
@@ -55,45 +55,6 @@ EXTRA = {
             faq="FAQ · MARS",
         ),
     ),
-    "zh": dict(
-        nav=[("how", "怎麼運作"), ("why", "為什麼選 MARS"), ("product", "產品"), ("security", "安全"), ("faq", "常見問題")],
-        home="首頁",
-        h1=("資安團隊", "查得了證的", "AI 分流。"),
-        shot_hero=("MARS 的實際畫面。郵件是合成的範例。", "MARS 對一封釣魚郵件的 AI 判定卡"),
-        shots_h="主控台的實際畫面",
-        shots_p="擷取自本機的 MARS，以 Claude 模型分析合成的範例郵件。畫面中沒有任何真實的郵件或帳號。",
-        shots=[
-            ("ledger", "", "郵件分析紀錄：三封合成郵件，以及 MARS 為每一封發佈的判定。"),
-            ("verdict-full", "crop", "一筆完整的分析：寄件資訊、AI 的判定與理由、建議步驟、注意事項，以及要向回報者確認的問題。"),
-            ("ioc", "", "從郵件擷取出的指標，可以直接複製或匯出。"),
-        ],
-        problem_e="問題",
-        more_h="繼續了解 MARS",
-        more=[
-            ("how", "怎麼運作", "一件案子從進來到發佈的四個步驟，以及郵件和 XDR 事件各自檢查什麼。"),
-            ("why", "為什麼選 MARS", "MARS 怎麼把模型放進自己掌控的流程，讓 AI 的答案查得了證。"),
-            ("product", "產品", "主控台的頁面、串接的服務，以及部署在自己主機上的方式。"),
-            ("security", "安全", "帶敵意的輸入每跨過一道邊界時的控制，以及 MARS 明白寫出的限制。"),
-            ("faq", "常見問題", "關於安裝、模型、送給 AI 的內容，以及 MARS 不會自己做的事。"),
-        ],
-        go="前往",
-        next="下一頁",
-        how_e="怎麼運作",
-        ai_e="AI",
-        product_e="產品",
-        pages_h="主控台頁面",
-        integ_h="串接的服務",
-        cli=("命令列", "同樣的分析也能從終端機執行。"),
-        deploy_e="部署與資料",
-        titles=dict(
-            index="MARS · AI 釣魚郵件分析與事件回應",
-            how="怎麼運作 · MARS",
-            why="為什麼選 MARS · MARS",
-            product="產品 · MARS",
-            security="安全 · MARS",
-            faq="常見問題 · MARS",
-        ),
-    ),
 }
 
 HREF = {"index": "./", "how": "how.html", "why": "why.html", "product": "product.html", "security": "security.html", "faq": "faq.html"}
@@ -112,7 +73,7 @@ CSS = """
 :root{--bg:#F4F7F6;--surface:#FFFFFF;--line:#D5DEDD;--line-2:#E6ECEB;--ink:#0E1D23;--ink-2:#46575F;--ink-3:#24353D;--accent:#0A6B7C;--accent-soft:#DBEEF1;
 --band:#0B1F26;--band-2:#12303A;--band-line:#24444F;--band-ink:#EAF2F3;--band-ink-2:#A9C0C6;--band-ink-3:#8FA9B0;--cyan:#5FD0E0;--on-cyan:#06181D;
 --ok:#1C7748;--ok-ink:#14592F;--ok-soft:#DFF1E6;--warn:#7A4F00;--warn-ink:#6A4400;--warn-soft:#F8EBCF;--bad:#B02F29;--bad-soft:#F8E1DF;--mute-soft:#E6ECEB;
---display:'Bricolage Grotesque','Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;--ui:'IBM Plex Sans','Noto Sans TC','PingFang TC','Microsoft JhengHei',system-ui,sans-serif;--mono:'IBM Plex Mono','Noto Sans TC',ui-monospace,Menlo,monospace;color-scheme:light}
+--display:'Bricolage Grotesque','PingFang TC','Microsoft JhengHei',sans-serif;--ui:'IBM Plex Sans','PingFang TC','Microsoft JhengHei',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;color-scheme:light}
 @media (prefers-color-scheme:dark){:root{--bg:#0F1A1F;--surface:#15242B;--line:#28393F;--line-2:#22323A;--ink:#E5EDEF;--ink-2:#A9B8BF;--ink-3:#C9D5D9;--accent:#5FD0E0;--accent-soft:#12333C;
 --ok:#62D097;--ok-ink:#8BE0B2;--ok-soft:#12301F;--warn:#E9B85A;--warn-ink:#F2C56B;--warn-soft:#33270C;--bad:#F1887F;--bad-soft:#3A1A18;--mute-soft:#22323A;color-scheme:dark}}
 *{box-sizing:border-box}html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -126,17 +87,14 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);font-s
 .bar nav{display:flex;flex-wrap:wrap;gap:8px 32px;margin-left:auto;font-size:15px}
 .bar nav a{color:var(--band-ink-2);text-decoration:none;padding:10px 0;border-bottom:2px solid transparent}
 .bar nav a:hover{color:var(--band-ink)}.bar nav a[aria-current]{color:var(--band-ink);font-weight:600;border-bottom-color:var(--cyan)}
-.langs{display:flex;border:1px solid var(--band-line);border-radius:999px;overflow:hidden}
-.langs button{font:inherit;font-size:13px;background:transparent;color:var(--band-ink-2);border:0;padding:6px 14px;min-height:32px;cursor:pointer}
-.langs button[aria-pressed=true]{background:var(--cyan);color:var(--on-cyan);font-weight:600}
 .eyebrow{font-size:14px;font-weight:600;letter-spacing:.08em;color:var(--accent)}.band .eyebrow{color:var(--cyan)}
-.display{font-family:var(--display);font-weight:800}:lang(zh-Hant) .display{font-weight:900;word-break:keep-all;overflow-wrap:anywhere}
+.display{font-family:var(--display);font-weight:800}
 .hero{display:flex;flex-direction:column;gap:56px;padding-block:64px 88px}
 .hero-copy{min-width:0;display:flex;flex-direction:column;gap:26px;max-width:820px}
 .hero .eyebrow{display:flex;align-items:center;gap:10px}.hero .eyebrow::before{content:"";width:28px;height:2px;background:var(--cyan)}
-.hero h1{font-size:clamp(38px,5.4vw,72px);line-height:1.08;letter-spacing:-.02em}:lang(zh-Hant) .hero h1{line-height:1.16;letter-spacing:.01em}
+.hero h1{font-size:clamp(38px,5.4vw,72px);line-height:1.08;letter-spacing:-.02em}
 .hero h1 em{font-style:normal;color:var(--cyan)}
-.lead{font-size:19px;line-height:1.75;color:var(--band-ink-2);max-width:30em}:lang(en) .lead{max-width:34em;line-height:1.6}
+.lead{font-size:19px;line-height:1.6;color:var(--band-ink-2);max-width:34em}
 .cta{display:flex;flex-wrap:wrap;gap:14px}
 .btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 26px;border-radius:999px;background:var(--cyan);color:var(--on-cyan);font-weight:600;text-decoration:none}
 .btn.ghost{background:transparent;color:var(--band-ink);border:1px solid #3A5B66}
@@ -161,12 +119,12 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);font-s
 .hero .shot a{border-radius:16px}
 .shots{display:flex;flex-direction:column;gap:40px}
 .pagehead{display:flex;flex-direction:column;gap:20px;padding-block:64px 88px}
-.pagehead h1{font-size:clamp(34px,4.6vw,62px);line-height:1.12;max-width:16em}:lang(zh-Hant) .pagehead h1{line-height:1.2;max-width:16em}
+.pagehead h1{font-size:clamp(34px,4.6vw,62px);line-height:1.12;max-width:16em}
 .sec{padding-block:104px}.sec.tight{padding-block:88px}.alt{background:var(--surface);border-block:1px solid var(--line)}
 .stack{display:flex;flex-direction:column;gap:48px}
 .split{display:flex;flex-wrap:wrap;gap:48px 72px}.split>.head{flex:1 1 340px;min-width:0}.split>.body{flex:1.4 1 520px;min-width:0}
 .head{display:flex;flex-direction:column;gap:16px;max-width:760px}
-h2.display{font-size:clamp(28px,3.4vw,44px);line-height:1.18}:lang(zh-Hant) h2.display{line-height:1.28}
+h2.display{font-size:clamp(28px,3.4vw,44px);line-height:1.18}
 .head p{font-size:17px;color:var(--ink-2)}.band .head p{color:var(--band-ink-2)}
 h2.plain{font-size:22px;font-weight:700}
 .cells{display:flex;flex-wrap:wrap;gap:0 40px}
@@ -219,31 +177,16 @@ footer.band{color:var(--band-ink-3)}
 .next span{display:flex;flex-direction:column;gap:4px}.next small{font-size:14px;font-weight:600;letter-spacing:.08em;color:var(--cyan)}.next b{font-size:clamp(26px,3vw,40px);line-height:1.3}
 .foot{display:flex;flex-wrap:wrap;align-items:center;gap:12px 32px;font-size:14px;padding-block:28px 48px;border-top:1px solid var(--band-line)}
 .foot.first{border-top:0;padding-top:40px}.foot .mark{font-size:14px;letter-spacing:.2em}.foot a{color:var(--band-ink-2);text-decoration:none}.foot a:hover{color:var(--band-ink)}.foot span:last-child{margin-left:auto}
-@media (max-width:640px){.wrap{padding-inline:18px}.bar nav{order:3;flex-basis:100%;margin-left:0;gap:4px 22px}.langs{margin-left:auto}.hero{padding-block:44px 64px}.pagehead{padding-block:40px 56px}.sec,.sec.tight{padding-block:60px}.closing{padding-block:60px 0}.stack{gap:32px}.outcomes{margin-top:-12px}.pipe{padding:22px}.foot span:last-child{margin-left:0}}
+@media (max-width:640px){.wrap{padding-inline:18px}.bar nav{order:3;flex-basis:100%;margin-left:0;gap:4px 22px}.hero{padding-block:44px 64px}.pagehead{padding-block:40px 56px}.sec,.sec.tight{padding-block:60px}.closing{padding-block:60px 0}.stack{gap:32px}.outcomes{margin-top:-12px}.pipe{padding:22px}.foot span:last-child{margin-left:0}}
 """
-
-JS = """
-(function(){
-var blocks=document.querySelectorAll('[data-lang]');
-function show(l){blocks.forEach(function(b){b.hidden=b.dataset.lang!==l;});document.documentElement.lang=l==='zh'?'zh-Hant':'en';var t=document.body.dataset[l==='zh'?'titleZh':'titleEn'];if(t)document.title=t;}
-var pick=null;try{pick=localStorage.getItem('mars-lang');}catch(e){}
-if(pick!=='en'&&pick!=='zh')pick=/^zh/i.test(navigator.language||'')?'zh':'en';
-show(pick);
-document.querySelectorAll('.langs button').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.set);try{localStorage.setItem('mars-lang',b.dataset.set);}catch(e){}});});
-})();
-"""
-
 
 def bar(X, lang, page):
     links = "".join(
         f'<a href="{HREF[k]}"{" aria-current=page" if k == page else ""}>{t}</a>' for k, t in X["nav"]
     )
-    en = lang == "en"
     return (
         f'<header class="wrap bar"><a class="mark" href="./">MARS</a><nav aria-label="{X["home"]}">{links}</nav>'
-        '<div class="langs" role="group" aria-label="Language">'
-        f'<button type="button" data-set="en" aria-pressed="{"true" if en else "false"}">English</button>'
-        f'<button type="button" data-set="zh" aria-pressed="{"false" if en else "true"}">中文</button></div></header>'
+        '</header>'
     )
 
 
@@ -385,21 +328,20 @@ def faq(L, X, lang):
 
 PAGES = {"index": home, "how": how, "why": why, "product": product, "security": security, "faq": faq}
 ICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B1F26'/%3E%3Cpath d='M8 23V9h3l5 8 5-8h3v14h-3v-9l-5 8-5-8v9z' fill='%235FD0E0'/%3E%3C/svg%3E"
-FONTS = "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
+FONTS = "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
 DESC = "MARS reads reported mail and Microsoft Defender XDR incidents, gathers the evidence, asks an AI model for a judgement, and publishes only the answers that evidence supports."
 
 
 def render(page):
-    fn = PAGES[page]
-    en, zh = EXTRA["en"], EXTRA["zh"]
+    X = EXTRA["en"]
     return f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{en["titles"][page]}</title>
+<title>{X["titles"][page]}</title>
 <meta name="description" content="{DESC}">
-<meta property="og:title" content="{en["titles"][page]}">
+<meta property="og:title" content="{X["titles"][page]}">
 <meta property="og:description" content="Self-hosted AI phishing analysis and incident response whose answers are checked against evidence.">
 <meta property="og:type" content="website">
 <link rel="icon" href="{ICON}">
@@ -408,14 +350,8 @@ def render(page):
 <link rel="stylesheet" href="{FONTS}">
 <style>{CSS}</style>
 </head>
-<body data-title-en="{en["titles"][page]}" data-title-zh="{zh["titles"][page]}">
-<div lang="en" data-lang="en">
-{fn(EN, en, "en")}
-</div>
-<div lang="zh-Hant" data-lang="zh" hidden>
-{fn(ZH, zh, "zh")}
-</div>
-<script>{JS}</script>
+<body>
+{PAGES[page](EN, X, "en")}
 </body>
 </html>
 """

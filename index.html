@@ -11,12 +11,12 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B1F26'/%3E%3Cpath d='M8 23V9h3l5 8 5-8h3v14h-3v-9l-5 8-5-8v9z' fill='%235FD0E0'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
 :root{--bg:#F4F7F6;--surface:#FFFFFF;--line:#D5DEDD;--line-2:#E6ECEB;--ink:#0E1D23;--ink-2:#46575F;--ink-3:#24353D;--accent:#0A6B7C;--accent-soft:#DBEEF1;
 --band:#0B1F26;--band-2:#12303A;--band-line:#24444F;--band-ink:#EAF2F3;--band-ink-2:#A9C0C6;--band-ink-3:#8FA9B0;--cyan:#5FD0E0;--on-cyan:#06181D;
 --ok:#1C7748;--ok-ink:#14592F;--ok-soft:#DFF1E6;--warn:#7A4F00;--warn-ink:#6A4400;--warn-soft:#F8EBCF;--bad:#B02F29;--bad-soft:#F8E1DF;--mute-soft:#E6ECEB;
---display:'Bricolage Grotesque','Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;--ui:'IBM Plex Sans','Noto Sans TC','PingFang TC','Microsoft JhengHei',system-ui,sans-serif;--mono:'IBM Plex Mono','Noto Sans TC',ui-monospace,Menlo,monospace;color-scheme:light}
+--display:'Bricolage Grotesque','PingFang TC','Microsoft JhengHei',sans-serif;--ui:'IBM Plex Sans','PingFang TC','Microsoft JhengHei',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;color-scheme:light}
 @media (prefers-color-scheme:dark){:root{--bg:#0F1A1F;--surface:#15242B;--line:#28393F;--line-2:#22323A;--ink:#E5EDEF;--ink-2:#A9B8BF;--ink-3:#C9D5D9;--accent:#5FD0E0;--accent-soft:#12333C;
 --ok:#62D097;--ok-ink:#8BE0B2;--ok-soft:#12301F;--warn:#E9B85A;--warn-ink:#F2C56B;--warn-soft:#33270C;--bad:#F1887F;--bad-soft:#3A1A18;--mute-soft:#22323A;color-scheme:dark}}
 *{box-sizing:border-box}html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -30,17 +30,14 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);font-s
 .bar nav{display:flex;flex-wrap:wrap;gap:8px 32px;margin-left:auto;font-size:15px}
 .bar nav a{color:var(--band-ink-2);text-decoration:none;padding:10px 0;border-bottom:2px solid transparent}
 .bar nav a:hover{color:var(--band-ink)}.bar nav a[aria-current]{color:var(--band-ink);font-weight:600;border-bottom-color:var(--cyan)}
-.langs{display:flex;border:1px solid var(--band-line);border-radius:999px;overflow:hidden}
-.langs button{font:inherit;font-size:13px;background:transparent;color:var(--band-ink-2);border:0;padding:6px 14px;min-height:32px;cursor:pointer}
-.langs button[aria-pressed=true]{background:var(--cyan);color:var(--on-cyan);font-weight:600}
 .eyebrow{font-size:14px;font-weight:600;letter-spacing:.08em;color:var(--accent)}.band .eyebrow{color:var(--cyan)}
-.display{font-family:var(--display);font-weight:800}:lang(zh-Hant) .display{font-weight:900;word-break:keep-all;overflow-wrap:anywhere}
+.display{font-family:var(--display);font-weight:800}
 .hero{display:flex;flex-direction:column;gap:56px;padding-block:64px 88px}
 .hero-copy{min-width:0;display:flex;flex-direction:column;gap:26px;max-width:820px}
 .hero .eyebrow{display:flex;align-items:center;gap:10px}.hero .eyebrow::before{content:"";width:28px;height:2px;background:var(--cyan)}
-.hero h1{font-size:clamp(38px,5.4vw,72px);line-height:1.08;letter-spacing:-.02em}:lang(zh-Hant) .hero h1{line-height:1.16;letter-spacing:.01em}
+.hero h1{font-size:clamp(38px,5.4vw,72px);line-height:1.08;letter-spacing:-.02em}
 .hero h1 em{font-style:normal;color:var(--cyan)}
-.lead{font-size:19px;line-height:1.75;color:var(--band-ink-2);max-width:30em}:lang(en) .lead{max-width:34em;line-height:1.6}
+.lead{font-size:19px;line-height:1.6;color:var(--band-ink-2);max-width:34em}
 .cta{display:flex;flex-wrap:wrap;gap:14px}
 .btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 26px;border-radius:999px;background:var(--cyan);color:var(--on-cyan);font-weight:600;text-decoration:none}
 .btn.ghost{background:transparent;color:var(--band-ink);border:1px solid #3A5B66}
@@ -65,12 +62,12 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);font-s
 .hero .shot a{border-radius:16px}
 .shots{display:flex;flex-direction:column;gap:40px}
 .pagehead{display:flex;flex-direction:column;gap:20px;padding-block:64px 88px}
-.pagehead h1{font-size:clamp(34px,4.6vw,62px);line-height:1.12;max-width:16em}:lang(zh-Hant) .pagehead h1{line-height:1.2;max-width:16em}
+.pagehead h1{font-size:clamp(34px,4.6vw,62px);line-height:1.12;max-width:16em}
 .sec{padding-block:104px}.sec.tight{padding-block:88px}.alt{background:var(--surface);border-block:1px solid var(--line)}
 .stack{display:flex;flex-direction:column;gap:48px}
 .split{display:flex;flex-wrap:wrap;gap:48px 72px}.split>.head{flex:1 1 340px;min-width:0}.split>.body{flex:1.4 1 520px;min-width:0}
 .head{display:flex;flex-direction:column;gap:16px;max-width:760px}
-h2.display{font-size:clamp(28px,3.4vw,44px);line-height:1.18}:lang(zh-Hant) h2.display{line-height:1.28}
+h2.display{font-size:clamp(28px,3.4vw,44px);line-height:1.18}
 .head p{font-size:17px;color:var(--ink-2)}.band .head p{color:var(--band-ink-2)}
 h2.plain{font-size:22px;font-weight:700}
 .cells{display:flex;flex-wrap:wrap;gap:0 40px}
@@ -123,12 +120,11 @@ footer.band{color:var(--band-ink-3)}
 .next span{display:flex;flex-direction:column;gap:4px}.next small{font-size:14px;font-weight:600;letter-spacing:.08em;color:var(--cyan)}.next b{font-size:clamp(26px,3vw,40px);line-height:1.3}
 .foot{display:flex;flex-wrap:wrap;align-items:center;gap:12px 32px;font-size:14px;padding-block:28px 48px;border-top:1px solid var(--band-line)}
 .foot.first{border-top:0;padding-top:40px}.foot .mark{font-size:14px;letter-spacing:.2em}.foot a{color:var(--band-ink-2);text-decoration:none}.foot a:hover{color:var(--band-ink)}.foot span:last-child{margin-left:auto}
-@media (max-width:640px){.wrap{padding-inline:18px}.bar nav{order:3;flex-basis:100%;margin-left:0;gap:4px 22px}.langs{margin-left:auto}.hero{padding-block:44px 64px}.pagehead{padding-block:40px 56px}.sec,.sec.tight{padding-block:60px}.closing{padding-block:60px 0}.stack{gap:32px}.outcomes{margin-top:-12px}.pipe{padding:22px}.foot span:last-child{margin-left:0}}
+@media (max-width:640px){.wrap{padding-inline:18px}.bar nav{order:3;flex-basis:100%;margin-left:0;gap:4px 22px}.hero{padding-block:44px 64px}.pagehead{padding-block:40px 56px}.sec,.sec.tight{padding-block:60px}.closing{padding-block:60px 0}.stack{gap:32px}.outcomes{margin-top:-12px}.pipe{padding:22px}.foot span:last-child{margin-left:0}}
 </style>
 </head>
-<body data-title-en="MARS · AI phishing analysis and incident response" data-title-zh="MARS · AI 釣魚郵件分析與事件回應">
-<div lang="en" data-lang="en">
-<div class="band"><header class="wrap bar"><a class="mark" href="./">MARS</a><nav aria-label="Home"><a href="how.html">How it works</a><a href="why.html">Why MARS</a><a href="product.html">Product</a><a href="security.html">Security</a><a href="faq.html">FAQ</a></nav><div class="langs" role="group" aria-label="Language"><button type="button" data-set="en" aria-pressed="true">English</button><button type="button" data-set="zh" aria-pressed="false">中文</button></div></header>
+<body>
+<div class="band"><header class="wrap bar"><a class="mark" href="./">MARS</a><nav aria-label="Home"><a href="how.html">How it works</a><a href="why.html">Why MARS</a><a href="product.html">Product</a><a href="security.html">Security</a><a href="faq.html">FAQ</a></nav></header>
 <div class="wrap hero"><div class="hero-copy"><span class="eyebrow">AI phishing analysis and incident response</span>
 <h1 class="display">AI triage<br>your SOC<br><em>can check.</em></h1><p class="lead">MARS reads the suspicious mail your employees report and the incidents Microsoft Defender XDR raises. It gathers the evidence, asks an AI model for a judgement, and publishes only the answers that evidence supports.</p>
 <div class="cta"><a class="btn" href="how.html">See how it works <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a><a class="btn ghost" href="why.html">Why MARS</a></div>
@@ -138,28 +134,5 @@ footer.band{color:var(--band-ink-3)}
 <div class="body cells"><div class="cell"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l9 6 9-6M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z"/></svg><h3>Too much to read</h3><span>Reported mail and XDR incidents arrive faster than a small team can open them.</span></div><div class="cell"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-.9.6-1.5 1.1-1.5 2.2M12 17h.01"/></svg><h3>Confident is not correct</h3><span>A model can sound certain and be wrong. A wrong "safe" is expensive.</span></div><div class="cell"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 16H3L12 3zM12 10v4M12 17h.01"/></svg><h3>The input is hostile</h3><span>The mail was written by an attacker, sometimes with text aimed at the AI.</span></div><div class="cell"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 018 0v3"/></svg><h3>The data is sensitive</h3><span>Reported mail holds internal correspondence. It cannot go to just any cloud service.</span></div></div></div></section>
 <section><div class="wrap sec stack" style="gap:36px"><h2 class="display">Keep exploring</h2><div class="more"><a href="how.html"><b>How it works</b><span>The four steps from a new case to a published answer, and what MARS checks in mail and in XDR incidents.</span><span class="go">Open <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a><a href="why.html"><b>Why MARS</b><span>How MARS keeps the model inside a pipeline it controls, so the AI's answers can be checked.</span><span class="go">Open <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a><a href="product.html"><b>Product</b><span>The console pages, the services MARS connects to, and how it runs on your own host.</span><span class="go">Open <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a><a href="security.html"><b>Security</b><span>The controls at each boundary hostile input crosses, and the limits MARS states openly.</span><span class="go">Open <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a><a href="faq.html"><b>FAQ</b><span>Short answers on setup, models, what is sent to the AI and what MARS will not do alone.</span><span class="go">Open <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a></div></div></section>
 <footer class="band"><div class="wrap"><div class="foot first"><span class="mark">MARS</span><a href="how.html">How it works</a><a href="why.html">Why MARS</a><a href="product.html">Product</a><a href="security.html">Security</a><a href="faq.html">FAQ</a><span>Mail Analysis &amp; Response System · Version 1.5 · October 2026</span></div></div></footer>
-</div>
-<div lang="zh-Hant" data-lang="zh" hidden>
-<div class="band"><header class="wrap bar"><a class="mark" href="./">MARS</a><nav aria-label="首頁"><a href="how.html">怎麼運作</a><a href="why.html">為什麼選 MARS</a><a href="product.html">產品</a><a href="security.html">安全</a><a href="faq.html">常見問題</a></nav><div class="langs" role="group" aria-label="Language"><button type="button" data-set="en" aria-pressed="false">English</button><button type="button" data-set="zh" aria-pressed="true">中文</button></div></header>
-<div class="wrap hero"><div class="hero-copy"><span class="eyebrow">AI 釣魚郵件分析與事件回應</span>
-<h1 class="display">資安團隊<br>查得了證的<br><em>AI 分流。</em></h1><p class="lead">MARS 讀取同仁回報的可疑郵件和 Microsoft Defender XDR 的事件，收集證據、請 AI 模型判斷，只發佈有證據支持的答案。</p>
-<div class="cta"><a class="btn" href="how.html">看它怎麼運作 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a><a class="btn ghost" href="why.html">為什麼選 MARS</a></div>
-<div class="facts"><span>自架</span><span>自選模型</span><span>1.5 版</span><span>AGPL-3.0 授權</span></div></div>
-<figure class="shot "><a href="img/verdict-zh.webp"><img src="img/verdict-zh.webp" alt="MARS 對一封釣魚郵件的 AI 判定卡" loading="lazy" decoding="async"></a><figcaption>MARS 的實際畫面。郵件是合成的範例。</figcaption></figure></div></div>
-<section class="alt"><div class="wrap sec split"><div class="head"><span class="eyebrow">問題</span><h2 class="display">AI 分流做起來容易，要讓人信任很難。</h2><p>資安團隊希望讓模型先看第一輪，但有四件事擋在前面。</p></div>
-<div class="body cells"><div class="cell"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l9 6 9-6M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z"/></svg><h3>量太大</h3><span>回報郵件和 XDR 事件進來的速度，超過小團隊打得開的速度。</span></div><div class="cell"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-.9.6-1.5 1.1-1.5 2.2M12 17h.01"/></svg><h3>有把握不等於正確</h3><span>模型可以講得很肯定卻是錯的。一次錯誤的「安全」代價很高。</span></div><div class="cell"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 16H3L12 3zM12 10v4M12 17h.01"/></svg><h3>輸入帶有敵意</h3><span>郵件是攻擊者寫的，有時還夾帶針對 AI 的文字。</span></div><div class="cell"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 018 0v3"/></svg><h3>資料很敏感</h3><span>回報郵件裡有內部往來，不能送到任意的雲端服務。</span></div></div></div></section>
-<section><div class="wrap sec stack" style="gap:36px"><h2 class="display">繼續了解 MARS</h2><div class="more"><a href="how.html"><b>怎麼運作</b><span>一件案子從進來到發佈的四個步驟，以及郵件和 XDR 事件各自檢查什麼。</span><span class="go">前往 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a><a href="why.html"><b>為什麼選 MARS</b><span>MARS 怎麼把模型放進自己掌控的流程，讓 AI 的答案查得了證。</span><span class="go">前往 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a><a href="product.html"><b>產品</b><span>主控台的頁面、串接的服務，以及部署在自己主機上的方式。</span><span class="go">前往 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a><a href="security.html"><b>安全</b><span>帶敵意的輸入每跨過一道邊界時的控制，以及 MARS 明白寫出的限制。</span><span class="go">前往 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a><a href="faq.html"><b>常見問題</b><span>關於安裝、模型、送給 AI 的內容，以及 MARS 不會自己做的事。</span><span class="go">前往 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a></div></div></section>
-<footer class="band"><div class="wrap"><div class="foot first"><span class="mark">MARS</span><a href="how.html">怎麼運作</a><a href="why.html">為什麼選 MARS</a><a href="product.html">產品</a><a href="security.html">安全</a><a href="faq.html">常見問題</a><span>Mail Analysis &amp; Response System · 1.5 版 · 2026 年 10 月</span></div></div></footer>
-</div>
-<script>
-(function(){
-var blocks=document.querySelectorAll('[data-lang]');
-function show(l){blocks.forEach(function(b){b.hidden=b.dataset.lang!==l;});document.documentElement.lang=l==='zh'?'zh-Hant':'en';var t=document.body.dataset[l==='zh'?'titleZh':'titleEn'];if(t)document.title=t;}
-var pick=null;try{pick=localStorage.getItem('mars-lang');}catch(e){}
-if(pick!=='en'&&pick!=='zh')pick=/^zh/i.test(navigator.language||'')?'zh':'en';
-show(pick);
-document.querySelectorAll('.langs button').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.set);try{localStorage.setItem('mars-lang',b.dataset.set);}catch(e){}});});
-})();
-</script>
 </body>
 </html>

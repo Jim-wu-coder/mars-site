@@ -11,12 +11,12 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B1F26'/%3E%3Cpath d='M8 23V9h3l5 8 5-8h3v14h-3v-9l-5 8-5-8v9z' fill='%235FD0E0'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
 :root{--bg:#F4F7F6;--surface:#FFFFFF;--line:#D5DEDD;--line-2:#E6ECEB;--ink:#0E1D23;--ink-2:#46575F;--ink-3:#24353D;--accent:#0A6B7C;--accent-soft:#DBEEF1;
 --band:#0B1F26;--band-2:#12303A;--band-line:#24444F;--band-ink:#EAF2F3;--band-ink-2:#A9C0C6;--band-ink-3:#8FA9B0;--cyan:#5FD0E0;--on-cyan:#06181D;
 --ok:#1C7748;--ok-ink:#14592F;--ok-soft:#DFF1E6;--warn:#7A4F00;--warn-ink:#6A4400;--warn-soft:#F8EBCF;--bad:#B02F29;--bad-soft:#F8E1DF;--mute-soft:#E6ECEB;
---display:'Bricolage Grotesque','Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;--ui:'IBM Plex Sans','Noto Sans TC','PingFang TC','Microsoft JhengHei',system-ui,sans-serif;--mono:'IBM Plex Mono','Noto Sans TC',ui-monospace,Menlo,monospace;color-scheme:light}
+--display:'Bricolage Grotesque','PingFang TC','Microsoft JhengHei',sans-serif;--ui:'IBM Plex Sans','PingFang TC','Microsoft JhengHei',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;color-scheme:light}
 @media (prefers-color-scheme:dark){:root{--bg:#0F1A1F;--surface:#15242B;--line:#28393F;--line-2:#22323A;--ink:#E5EDEF;--ink-2:#A9B8BF;--ink-3:#C9D5D9;--accent:#5FD0E0;--accent-soft:#12333C;
 --ok:#62D097;--ok-ink:#8BE0B2;--ok-soft:#12301F;--warn:#E9B85A;--warn-ink:#F2C56B;--warn-soft:#33270C;--bad:#F1887F;--bad-soft:#3A1A18;--mute-soft:#22323A;color-scheme:dark}}
 *{box-sizing:border-box}html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -30,17 +30,14 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);font-s
 .bar nav{display:flex;flex-wrap:wrap;gap:8px 32px;margin-left:auto;font-size:15px}
 .bar nav a{color:var(--band-ink-2);text-decoration:none;padding:10px 0;border-bottom:2px solid transparent}
 .bar nav a:hover{color:var(--band-ink)}.bar nav a[aria-current]{color:var(--band-ink);font-weight:600;border-bottom-color:var(--cyan)}
-.langs{display:flex;border:1px solid var(--band-line);border-radius:999px;overflow:hidden}
-.langs button{font:inherit;font-size:13px;background:transparent;color:var(--band-ink-2);border:0;padding:6px 14px;min-height:32px;cursor:pointer}
-.langs button[aria-pressed=true]{background:var(--cyan);color:var(--on-cyan);font-weight:600}
 .eyebrow{font-size:14px;font-weight:600;letter-spacing:.08em;color:var(--accent)}.band .eyebrow{color:var(--cyan)}
-.display{font-family:var(--display);font-weight:800}:lang(zh-Hant) .display{font-weight:900;word-break:keep-all;overflow-wrap:anywhere}
+.display{font-family:var(--display);font-weight:800}
 .hero{display:flex;flex-direction:column;gap:56px;padding-block:64px 88px}
 .hero-copy{min-width:0;display:flex;flex-direction:column;gap:26px;max-width:820px}
 .hero .eyebrow{display:flex;align-items:center;gap:10px}.hero .eyebrow::before{content:"";width:28px;height:2px;background:var(--cyan)}
-.hero h1{font-size:clamp(38px,5.4vw,72px);line-height:1.08;letter-spacing:-.02em}:lang(zh-Hant) .hero h1{line-height:1.16;letter-spacing:.01em}
+.hero h1{font-size:clamp(38px,5.4vw,72px);line-height:1.08;letter-spacing:-.02em}
 .hero h1 em{font-style:normal;color:var(--cyan)}
-.lead{font-size:19px;line-height:1.75;color:var(--band-ink-2);max-width:30em}:lang(en) .lead{max-width:34em;line-height:1.6}
+.lead{font-size:19px;line-height:1.6;color:var(--band-ink-2);max-width:34em}
 .cta{display:flex;flex-wrap:wrap;gap:14px}
 .btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 26px;border-radius:999px;background:var(--cyan);color:var(--on-cyan);font-weight:600;text-decoration:none}
 .btn.ghost{background:transparent;color:var(--band-ink);border:1px solid #3A5B66}
@@ -65,12 +62,12 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);font-s
 .hero .shot a{border-radius:16px}
 .shots{display:flex;flex-direction:column;gap:40px}
 .pagehead{display:flex;flex-direction:column;gap:20px;padding-block:64px 88px}
-.pagehead h1{font-size:clamp(34px,4.6vw,62px);line-height:1.12;max-width:16em}:lang(zh-Hant) .pagehead h1{line-height:1.2;max-width:16em}
+.pagehead h1{font-size:clamp(34px,4.6vw,62px);line-height:1.12;max-width:16em}
 .sec{padding-block:104px}.sec.tight{padding-block:88px}.alt{background:var(--surface);border-block:1px solid var(--line)}
 .stack{display:flex;flex-direction:column;gap:48px}
 .split{display:flex;flex-wrap:wrap;gap:48px 72px}.split>.head{flex:1 1 340px;min-width:0}.split>.body{flex:1.4 1 520px;min-width:0}
 .head{display:flex;flex-direction:column;gap:16px;max-width:760px}
-h2.display{font-size:clamp(28px,3.4vw,44px);line-height:1.18}:lang(zh-Hant) h2.display{line-height:1.28}
+h2.display{font-size:clamp(28px,3.4vw,44px);line-height:1.18}
 .head p{font-size:17px;color:var(--ink-2)}.band .head p{color:var(--band-ink-2)}
 h2.plain{font-size:22px;font-weight:700}
 .cells{display:flex;flex-wrap:wrap;gap:0 40px}
@@ -123,33 +120,14 @@ footer.band{color:var(--band-ink-3)}
 .next span{display:flex;flex-direction:column;gap:4px}.next small{font-size:14px;font-weight:600;letter-spacing:.08em;color:var(--cyan)}.next b{font-size:clamp(26px,3vw,40px);line-height:1.3}
 .foot{display:flex;flex-wrap:wrap;align-items:center;gap:12px 32px;font-size:14px;padding-block:28px 48px;border-top:1px solid var(--band-line)}
 .foot.first{border-top:0;padding-top:40px}.foot .mark{font-size:14px;letter-spacing:.2em}.foot a{color:var(--band-ink-2);text-decoration:none}.foot a:hover{color:var(--band-ink)}.foot span:last-child{margin-left:auto}
-@media (max-width:640px){.wrap{padding-inline:18px}.bar nav{order:3;flex-basis:100%;margin-left:0;gap:4px 22px}.langs{margin-left:auto}.hero{padding-block:44px 64px}.pagehead{padding-block:40px 56px}.sec,.sec.tight{padding-block:60px}.closing{padding-block:60px 0}.stack{gap:32px}.outcomes{margin-top:-12px}.pipe{padding:22px}.foot span:last-child{margin-left:0}}
+@media (max-width:640px){.wrap{padding-inline:18px}.bar nav{order:3;flex-basis:100%;margin-left:0;gap:4px 22px}.hero{padding-block:44px 64px}.pagehead{padding-block:40px 56px}.sec,.sec.tight{padding-block:60px}.closing{padding-block:60px 0}.stack{gap:32px}.outcomes{margin-top:-12px}.pipe{padding:22px}.foot span:last-child{margin-left:0}}
 </style>
 </head>
-<body data-title-en="Why MARS · MARS" data-title-zh="為什麼選 MARS · MARS">
-<div lang="en" data-lang="en">
-<div class="band"><header class="wrap bar"><a class="mark" href="./">MARS</a><nav aria-label="Home"><a href="how.html">How it works</a><a href="why.html" aria-current=page>Why MARS</a><a href="product.html">Product</a><a href="security.html">Security</a><a href="faq.html">FAQ</a></nav><div class="langs" role="group" aria-label="Language"><button type="button" data-set="en" aria-pressed="true">English</button><button type="button" data-set="zh" aria-pressed="false">中文</button></div></header><div class="wrap pagehead"><span class="eyebrow">Why MARS</span><h1 class="display">The model is one step in a pipeline MARS controls.</h1><p class="lead">Checks sit on both sides of it.</p></div>
+<body>
+<div class="band"><header class="wrap bar"><a class="mark" href="./">MARS</a><nav aria-label="Home"><a href="how.html">How it works</a><a href="why.html" aria-current=page>Why MARS</a><a href="product.html">Product</a><a href="security.html">Security</a><a href="faq.html">FAQ</a></nav></header><div class="wrap pagehead"><span class="eyebrow">Why MARS</span><h1 class="display">The model is one step in a pipeline MARS controls.</h1><p class="lead">Checks sit on both sides of it.</p></div>
 <div class="wrap tiles" style="padding-bottom:104px"><div class="tile"><h2>It can decline to answer</h2><span>When evidence is thin, the case stays undecided and goes to a person.</span></div><div class="tile"><h2>Claims are checked against evidence</h2><span>If the AI cites something MARS never collected, the conclusion does not stand.</span></div><div class="tile"><h2>Unfinished never looks final</h2><span>A case still in progress shows its progress and nothing else.</span></div><div class="tile"><h2>People approve every action</h2><span>MARS proposes remediation, never runs it alone, and verifies the outcome afterwards.</span></div><div class="tile"><h2>Attacker text stays data</h2><span>Mail bodies, file names and links reach the model as material to examine, never as instructions.</span></div><div class="tile"><h2>You choose where the AI runs</h2><span>A hosted model, a company gateway or a local model. The host decides which endpoints are allowed.</span></div></div></div>
 <section class="alt"><div class="wrap sec split"><div class="head"><span class="eyebrow">AI</span><h2 class="display">Built around the model, not on faith in it.</h2><p>The model reads and reasons. MARS decides what it sees and what becomes of its answer.</p></div>
 <div class="body cells"><div class="cell"><h3>A fixed answer format</h3><span>The model answers within defined fields and options. Anything else is discarded.</span></div><div class="cell"><h3>A model for each job</h3><span>Mail, XDR incidents, sandbox results and the analyst assistant can each use a different one.</span></div><div class="cell"><h3>Budgets</h3><span>Every call is counted against a daily budget before it is sent.</span></div><div class="cell"><h3>Tested before any change</h3><span>Before a model or its instructions change, known cases are replayed. A drop in quality blocks the change.</span></div><div class="cell"><h3>Two languages</h3><span>Answers are produced in English and translated into Traditional Chinese in the background.</span></div><div class="cell"><h3>An audit trail</h3><span>Who did what, and when, is written to a signed log.</span></div></div></div></section>
 <footer class="band"><div class="wrap"><a class="next" href="product.html"><span><small>Next</small><b class="display">Product</b></span><svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="22" cy="22" r="21"/><path d="M14 22h16M24 16l6 6-6 6"/></svg></a><div class="foot"><span class="mark">MARS</span><a href="./">Home</a><a href="how.html">How it works</a><a href="product.html">Product</a><a href="security.html">Security</a><a href="faq.html">FAQ</a><span>Mail Analysis &amp; Response System · Version 1.5 · October 2026</span></div></div></footer>
-</div>
-<div lang="zh-Hant" data-lang="zh" hidden>
-<div class="band"><header class="wrap bar"><a class="mark" href="./">MARS</a><nav aria-label="首頁"><a href="how.html">怎麼運作</a><a href="why.html" aria-current=page>為什麼選 MARS</a><a href="product.html">產品</a><a href="security.html">安全</a><a href="faq.html">常見問題</a></nav><div class="langs" role="group" aria-label="Language"><button type="button" data-set="en" aria-pressed="false">English</button><button type="button" data-set="zh" aria-pressed="true">中文</button></div></header><div class="wrap pagehead"><span class="eyebrow">為什麼選 MARS</span><h1 class="display">模型只是 MARS 掌控的流程裡的一步。</h1><p class="lead">它的前後都有檢查。</p></div>
-<div class="wrap tiles" style="padding-bottom:104px"><div class="tile"><h2>它可以不回答</h2><span>證據太少時，案件保持未判定，交給人處理。</span></div><div class="tile"><h2>說法要對得上證據</h2><span>AI 引用了 MARS 沒收集到的東西，結論就不成立。</span></div><div class="tile"><h2>沒完成的不像結論</h2><span>還在分析的案件只顯示進度。</span></div><div class="tile"><h2>每個動作都由人核准</h2><span>MARS 提出處置建議，不會自己執行，事後還會確認結果。</span></div><div class="tile"><h2>攻擊者的文字只是資料</h2><span>郵件內文、檔名和連結交給模型時是待檢查的材料，不是指示。</span></div><div class="tile"><h2>AI 在哪裡跑由你決定</h2><span>雲端模型、公司閘道或本機模型都可以，可連線的位址由主機決定。</span></div></div></div>
-<section class="alt"><div class="wrap sec split"><div class="head"><span class="eyebrow">AI</span><h2 class="display">圍著模型設計，而不是相信模型。</h2><p>閱讀和推理交給模型；模型看到什麼、答案怎麼處理，由 MARS 決定。</p></div>
-<div class="body cells"><div class="cell"><h3>固定的回覆格式</h3><span>模型只能在規定的欄位和選項裡作答，其餘一律不採用。</span></div><div class="cell"><h3>不同工作用不同模型</h3><span>郵件、XDR 事件、沙箱結果和分析師助理可以各自選用。</span></div><div class="cell"><h3>預算</h3><span>每次呼叫送出前都先計入每日預算。</span></div><div class="cell"><h3>變更前先測試</h3><span>更換模型或調整指示之前，先重跑已知答案的案例；品質退步就不上線。</span></div><div class="cell"><h3>雙語</h3><span>答案以英文產生，在背景翻成繁體中文。</span></div><div class="cell"><h3>稽核軌跡</h3><span>誰在什麼時候做了什麼，都寫進有簽章的日誌。</span></div></div></div></section>
-<footer class="band"><div class="wrap"><a class="next" href="product.html"><span><small>下一頁</small><b class="display">產品</b></span><svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="22" cy="22" r="21"/><path d="M14 22h16M24 16l6 6-6 6"/></svg></a><div class="foot"><span class="mark">MARS</span><a href="./">首頁</a><a href="how.html">怎麼運作</a><a href="product.html">產品</a><a href="security.html">安全</a><a href="faq.html">常見問題</a><span>Mail Analysis &amp; Response System · 1.5 版 · 2026 年 10 月</span></div></div></footer>
-</div>
-<script>
-(function(){
-var blocks=document.querySelectorAll('[data-lang]');
-function show(l){blocks.forEach(function(b){b.hidden=b.dataset.lang!==l;});document.documentElement.lang=l==='zh'?'zh-Hant':'en';var t=document.body.dataset[l==='zh'?'titleZh':'titleEn'];if(t)document.title=t;}
-var pick=null;try{pick=localStorage.getItem('mars-lang');}catch(e){}
-if(pick!=='en'&&pick!=='zh')pick=/^zh/i.test(navigator.language||'')?'zh':'en';
-show(pick);
-document.querySelectorAll('.langs button').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.set);try{localStorage.setItem('mars-lang',b.dataset.set);}catch(e){}});});
-})();
-</script>
 </body>
 </html>
