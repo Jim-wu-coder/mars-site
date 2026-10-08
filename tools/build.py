@@ -13,10 +13,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from content import EN, ZH  # noqa: E402
+from content_more import FAQ, SECURITY  # noqa: E402
 
 EXTRA = {
     "en": dict(
-        nav=[("how", "How it works"), ("why", "Why MARS"), ("product", "Product")],
+        nav=[("how", "How it works"), ("why", "Why MARS"), ("product", "Product"), ("security", "Security"), ("faq", "FAQ")],
         home="Home",
         h1=("AI triage", "your SOC", "can check."),
         count="3 of 3 backed by evidence",
@@ -26,6 +27,8 @@ EXTRA = {
             ("how", "How it works", "The four steps from a new case to a published answer, and what MARS checks in mail and in XDR incidents."),
             ("why", "Why MARS", "How MARS keeps the model inside a pipeline it controls, so the AI's answers can be checked."),
             ("product", "Product", "The console pages, the services MARS connects to, and how it runs on your own host."),
+            ("security", "Security", "The controls at each boundary hostile input crosses, and the limits MARS states openly."),
+            ("faq", "FAQ", "Short answers on setup, models, what is sent to the AI and what MARS will not do alone."),
         ],
         go="Open",
         next="Next",
@@ -41,10 +44,12 @@ EXTRA = {
             how="How it works · MARS",
             why="Why MARS · MARS",
             product="Product · MARS",
+            security="Security · MARS",
+            faq="FAQ · MARS",
         ),
     ),
     "zh": dict(
-        nav=[("how", "怎麼運作"), ("why", "為什麼選 MARS"), ("product", "產品")],
+        nav=[("how", "怎麼運作"), ("why", "為什麼選 MARS"), ("product", "產品"), ("security", "安全"), ("faq", "常見問題")],
         home="首頁",
         h1=("資安團隊", "查得了證的", "AI 分流。"),
         count="3 / 3 項有證據",
@@ -54,6 +59,8 @@ EXTRA = {
             ("how", "怎麼運作", "一件案子從進來到發佈的四個步驟，以及郵件和 XDR 事件各自檢查什麼。"),
             ("why", "為什麼選 MARS", "MARS 怎麼把模型放進自己掌控的流程，讓 AI 的答案查得了證。"),
             ("product", "產品", "主控台的頁面、串接的服務，以及部署在自己主機上的方式。"),
+            ("security", "安全", "帶敵意的輸入每跨過一道邊界時的控制，以及 MARS 明白寫出的限制。"),
+            ("faq", "常見問題", "關於安裝、模型、送給 AI 的內容，以及 MARS 不會自己做的事。"),
         ],
         go="前往",
         next="下一頁",
@@ -69,12 +76,14 @@ EXTRA = {
             how="怎麼運作 · MARS",
             why="為什麼選 MARS · MARS",
             product="產品 · MARS",
+            security="安全 · MARS",
+            faq="常見問題 · MARS",
         ),
     ),
 }
 
-HREF = {"index": "./", "how": "how.html", "why": "why.html", "product": "product.html"}
-NEXT = {"how": "why", "why": "product"}
+HREF = {"index": "./", "how": "how.html", "why": "why.html", "product": "product.html", "security": "security.html", "faq": "faq.html"}
+NEXT = {"how": "why", "why": "product", "product": "security", "security": "faq"}
 
 ARROW = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>'
 TICK = '<svg class="tick" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="var(--ok-soft)"/><path d="M6.5 11.5l3 3 6-6.5" stroke="var(--ok)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
@@ -174,6 +183,16 @@ h2.plain{font-size:22px;font-weight:700}
 .integ{display:flex;flex-wrap:wrap;gap:28px 48px}.integ>div{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:12px}
 .integ h3{font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--ink-2)}
 .chips{display:flex;flex-wrap:wrap;gap:6px;font-size:13.5px;color:var(--ink-3)}.chips span{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:3px 10px}
+.bounds{display:flex;flex-direction:column}
+.bound{display:flex;flex-wrap:wrap;gap:16px 56px;padding:36px 0;border-top:1px solid var(--line)}
+.bound .n{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--accent)}
+.bound>div{flex:1 1 300px;min-width:0;display:flex;flex-direction:column;gap:8px}.bound h3{font-size:23px;font-weight:700;line-height:1.35}.bound>div>p{font-size:16px;color:var(--ink-2)}
+.bound ul{flex:1.5 1 460px;min-width:0;display:flex;flex-direction:column;gap:12px}
+.bound li{position:relative;padding-left:22px;font-size:15.5px;line-height:1.65;color:var(--ink-3)}.bound li::before{content:"";position:absolute;left:0;top:.72em;width:10px;height:2px;background:var(--accent)}
+.report{display:flex;flex-wrap:wrap;gap:12px 56px;align-items:baseline}.report h2{flex:0 1 300px}.report p{flex:1.5 1 460px;min-width:0;font-size:16px;color:var(--ink-2)}
+.qgroup{display:flex;flex-wrap:wrap;gap:20px 56px;padding:44px 0;border-top:1px solid var(--line)}.qgroup:first-child{border-top:0;padding-top:0}
+.qgroup>h2{flex:0 1 220px;font-size:22px;font-weight:700}
+.qa{flex:1.8 1 520px;min-width:0;display:flex;flex-direction:column;gap:30px}.qa h3{font-size:18.5px;font-weight:700;line-height:1.45;margin-bottom:6px}.qa p{font-size:16px;color:var(--ink-2);max-width:44em}
 .closing{padding-block:104px 0}.closing h2.display{font-size:clamp(32px,4.4vw,60px)}
 footer.band{color:var(--band-ink-3)}
 .next{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-block:64px 44px;color:var(--band-ink);text-decoration:none}
@@ -313,7 +332,32 @@ def product(L, X, lang):
 <footer class="band">{footer(L, X, "product")}</footer>"""
 
 
-PAGES = {"index": home, "how": how, "why": why, "product": product}
+def security(L, X, lang):
+    S = SECURITY[lang]
+    bounds = "".join(
+        f'<li class="bound"><div><span class="n">{i + 1:02d}</span><h3>{h}</h3><p>{p}</p></div><ul>{"".join(f"<li>{x}</li>" for x in items)}</ul></li>'
+        for i, (h, p, items) in enumerate(S["bounds"])
+    )
+    return f"""{pagehead(L, X, lang, "security", S["eyebrow"], S["h1"], S["lead"])}</div>
+<section><div class="wrap sec tight stack" style="gap:28px"><h2 class="display">{S["bounds_h"]}</h2><ol class="bounds">{bounds}</ol></div></section>
+<section class="band"><div class="wrap sec stack"><div class="head"><span class="eyebrow">{S["limits_e"]}</span><h2 class="display">{S["limits_h"]}</h2><p>{S["limits_p"]}</p></div>
+<div class="cells" style="gap:0 48px">{cells(S["limits"])}</div></div></section>
+<section class="alt"><div class="wrap sec tight report"><h2 class="plain">{S["report_h"]}</h2><p>{S["report_p"]}</p></div></section>
+<footer class="band">{footer(L, X, "security")}</footer>"""
+
+
+def faq(L, X, lang):
+    F = FAQ[lang]
+    groups = "".join(
+        f'<div class="qgroup"><h2>{g}</h2><div class="qa">{"".join(f"<div><h3>{q}</h3><p>{a}</p></div>" for q, a in qs)}</div></div>'
+        for g, qs in F["groups"]
+    )
+    return f"""{pagehead(L, X, lang, "faq", F["eyebrow"], F["h1"], F["lead"])}</div>
+<section><div class="wrap sec tight">{groups}</div></section>
+<footer class="band">{footer(L, X, "faq")}</footer>"""
+
+
+PAGES = {"index": home, "how": how, "why": why, "product": product, "security": security, "faq": faq}
 ICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B1F26'/%3E%3Cpath d='M8 23V9h3l5 8 5-8h3v14h-3v-9l-5 8-5-8v9z' fill='%235FD0E0'/%3E%3C/svg%3E"
 FONTS = "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
 DESC = "MARS reads reported mail and Microsoft Defender XDR incidents, gathers the evidence, asks an AI model for a judgement, and publishes only the answers that evidence supports."
