@@ -131,7 +131,7 @@ FAQ = {
             ("Using it", [
                 ("Does MARS take action by itself?", "No. It proposes response steps. A person approves them, and MARS then checks the outcome in the external system."),
                 ("Which languages does the console support?", "Traditional Chinese and English. AI output is produced in English and translated into Traditional Chinese in the background."),
-                ("What does it cost?", "MARS is released under the MIT licence. You pay for your own host and for the AI provider and threat-intelligence services you choose to connect."),
+                ("What does it cost?", "MARS is free software under the GNU AGPL, version 3 or later. You pay for your own host and for the AI provider and threat-intelligence services you choose to connect."),
             ]),
         ],
     ),
@@ -156,7 +156,7 @@ FAQ = {
             ("使用", [
                 ("MARS 會自己執行處置嗎？", "不會。它提出處置步驟，由人核准，之後再到外部系統確認結果。"),
                 ("主控台支援哪些語言？", "繁體中文和英文。AI 的輸出以英文產生，在背景翻成繁體中文。"),
-                ("費用是多少？", "MARS 以 MIT 授權釋出。你負擔的是自己的主機，以及你選擇串接的 AI provider 和威脅情資服務。"),
+                ("費用是多少？", "MARS 以 GNU AGPL 第 3 版（或更新版本）授權釋出。你負擔的是自己的主機，以及你選擇串接的 AI provider 和威脅情資服務。"),
             ]),
         ],
     ),
