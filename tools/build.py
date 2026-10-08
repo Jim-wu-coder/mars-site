@@ -27,7 +27,7 @@ EXTRA = {
             ("ledger", "", "Analysis history: three synthetic emails and the verdict MARS published for each."),
             ("verdict-full", "crop", "One analysis in full: who sent it, the AI's verdict and reasoning, recommended steps, cautions, and questions for the reporter."),
             ("ioc", "", "Indicators extracted from the email, ready to copy or export."),
-            ("xdr-queue", "", "The XDR incident queue: three synthetic incidents, each with the evidence for and against, the data gaps and the next step. In all three the AI's confidence was under the threshold, so MARS left the final decision to an analyst."),
+            ("xdr-queue", "", "The XDR incident queue: three synthetic incidents, each with the evidence for and against, the data gaps and the next step. In all three the AI's confidence was under the threshold, so MARS left the final decision to an analyst. This instance had no connection to Defender for Endpoint, so hunting queries could not run; the data gaps shown include everything those queries would have answered."),
             ("xdr-summary", "", "One incident in detail: what happened, why it matters, the next steps and the key evidence, with every gap stated."),
         ],
         problem_e="The problem",
