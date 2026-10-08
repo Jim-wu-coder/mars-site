@@ -20,7 +20,14 @@ EXTRA = {
         nav=[("how", "How it works"), ("why", "Why MARS"), ("product", "Product"), ("security", "Security"), ("faq", "FAQ")],
         home="Home",
         h1=("AI triage", "your SOC", "can check."),
-        count="3 of 3 backed by evidence",
+        shot_hero=("A real MARS screen. The email is a synthetic example.", "MARS AI verdict card for a phishing email"),
+        shots_h="The console, on real output",
+        shots_p="Captured from a local MARS instance analysing synthetic emails with a Claude model. No real mail or accounts appear.",
+        shots=[
+            ("ledger", "", "Analysis history: three synthetic emails and the verdict MARS published for each."),
+            ("verdict-full", "crop", "One analysis in full: who sent it, the AI's verdict and reasoning, recommended steps, cautions, and questions for the reporter."),
+            ("ioc", "", "Indicators extracted from the email, ready to copy or export."),
+        ],
         problem_e="The problem",
         more_h="Keep exploring",
         more=[
@@ -52,7 +59,14 @@ EXTRA = {
         nav=[("how", "怎麼運作"), ("why", "為什麼選 MARS"), ("product", "產品"), ("security", "安全"), ("faq", "常見問題")],
         home="首頁",
         h1=("資安團隊", "查得了證的", "AI 分流。"),
-        count="3 / 3 項有證據",
+        shot_hero=("MARS 的實際畫面。郵件是合成的範例。", "MARS 對一封釣魚郵件的 AI 判定卡"),
+        shots_h="主控台的實際畫面",
+        shots_p="擷取自本機的 MARS，以 Claude 模型分析合成的範例郵件。畫面中沒有任何真實的郵件或帳號。",
+        shots=[
+            ("ledger", "", "郵件分析紀錄：三封合成郵件，以及 MARS 為每一封發佈的判定。"),
+            ("verdict-full", "crop", "一筆完整的分析：寄件資訊、AI 的判定與理由、建議步驟、注意事項，以及要向回報者確認的問題。"),
+            ("ioc", "", "從郵件擷取出的指標，可以直接複製或匯出。"),
+        ],
         problem_e="問題",
         more_h="繼續了解 MARS",
         more=[
@@ -117,8 +131,8 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);font-s
 .langs button[aria-pressed=true]{background:var(--cyan);color:var(--on-cyan);font-weight:600}
 .eyebrow{font-size:14px;font-weight:600;letter-spacing:.08em;color:var(--accent)}.band .eyebrow{color:var(--cyan)}
 .display{font-family:var(--display);font-weight:800}:lang(zh-Hant) .display{font-weight:900;word-break:keep-all;overflow-wrap:anywhere}
-.hero{display:flex;flex-wrap:wrap;align-items:center;gap:56px 72px;padding-block:72px 112px}
-.hero-copy{flex:1 1 460px;min-width:0;display:flex;flex-direction:column;gap:28px}
+.hero{display:flex;flex-direction:column;gap:56px;padding-block:64px 88px}
+.hero-copy{min-width:0;display:flex;flex-direction:column;gap:26px;max-width:820px}
 .hero .eyebrow{display:flex;align-items:center;gap:10px}.hero .eyebrow::before{content:"";width:28px;height:2px;background:var(--cyan)}
 .hero h1{font-size:clamp(38px,5.4vw,72px);line-height:1.08;letter-spacing:-.02em}:lang(zh-Hant) .hero h1{line-height:1.16;letter-spacing:.01em}
 .hero h1 em{font-style:normal;color:var(--cyan)}
@@ -140,6 +154,12 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);font-s
 .held{display:flex;align-items:center;gap:14px;background:var(--band-2);border:1px solid var(--band-line);border-radius:12px;padding:14px 20px;font-size:14.5px;color:var(--band-ink-2)}
 .held b{flex:none;font-size:13px;color:#F2C56B;border:1px solid #F2C56B;border-radius:999px;padding:1px 12px}
 .mock .note{font-size:12px;color:var(--band-ink-3);text-align:right}
+.shot{margin:0;display:flex;flex-direction:column;gap:10px;min-width:0}
+.shot a{display:block;border:1px solid var(--band-line);border-radius:14px;overflow:hidden;background:#0B161C;box-shadow:0 30px 60px -28px rgba(0,0,0,.55)}
+.shot img{display:block;width:100%;height:auto}.shot.crop img{aspect-ratio:16/10;object-fit:cover;object-position:top}
+.shot figcaption{font-size:14px;color:var(--ink-2);line-height:1.6}.band .shot figcaption{color:var(--band-ink-3);font-size:12.5px;text-align:right}
+.hero .shot a{border-radius:16px}
+.shots{display:flex;flex-direction:column;gap:40px}
 .pagehead{display:flex;flex-direction:column;gap:20px;padding-block:64px 88px}
 .pagehead h1{font-size:clamp(34px,4.6vw,62px);line-height:1.12;max-width:16em}:lang(zh-Hant) .pagehead h1{line-height:1.2;max-width:16em}
 .sec{padding-block:104px}.sec.tight{padding-block:88px}.alt{background:var(--surface);border-block:1px solid var(--line)}
@@ -264,8 +284,15 @@ def pagehead(L, X, lang, page, eyebrow, h1, lead):
     )
 
 
+def shot(name, lang, alt, caption, cls=""):
+    src = f"img/{name}-{lang}.webp"
+    return (
+        f'<figure class="shot {cls}"><a href="{src}"><img src="{src}" alt="{alt}" loading="lazy" decoding="async"></a>'
+        f"<figcaption>{caption}</figcaption></figure>"
+    )
+
+
 def home(L, X, lang):
-    claims = "".join(f'<div class="claim">{TICK}<div>{k}<small>{v}</small></div></div>' for k, v in L["claims"])
     more = "".join(
         f'<a href="{HREF[k]}"><b>{t}</b><span>{d}</span><span class="go">{X["go"]} {ARROW}</span></a>'
         for k, t, d in X["more"]
@@ -276,10 +303,7 @@ def home(L, X, lang):
 <h1 class="display">{a}<br>{b}<br><em>{c}</em></h1><p class="lead">{L["lead"]}</p>
 <div class="cta"><a class="btn" href="how.html">{L["cta"][0]} {ARROW}</a><a class="btn ghost" href="why.html">{L["cta"][1]}</a></div>
 <div class="facts">{"".join(f"<span>{x}</span>" for x in L["facts"])}</div></div>
-<div class="mock" role="img" aria-label="{L["mocklabel"]}"><div class="card">
-<div class="card-head"><b>{L["m_title"]}</b><span class="pill bad" style="color:#B02F29;background:#F8E1DF">{L["m_verdict"]}</span><span class="count">{X["count"]}</span><span class="subj">{L["m_subj"]}</span></div>
-{claims}<div class="card-foot"><span>{L["m_foot"]}</span><span>{L["m_wait"]}</span></div></div>
-<div class="held"><b>{L["m_held"]}</b><span>{L["m_heldwhy"]}</span></div><span class="note">{L["m_note"]}</span></div></div></div>
+{shot("verdict", lang, X["shot_hero"][1], X["shot_hero"][0])}</div></div>
 <section class="alt"><div class="wrap sec split"><div class="head"><span class="eyebrow">{X["problem_e"]}</span><h2 class="display">{L["problem_h"]}</h2><p>{L["problem_p"]}</p></div>
 <div class="body cells">{cells(L["problem"], icons=PROBLEM_ICONS)}</div></div></section>
 <section><div class="wrap sec stack" style="gap:36px"><h2 class="display">{X["more_h"]}</h2><div class="more">{more}</div></div></section>
@@ -324,7 +348,9 @@ def product(L, X, lang):
         f'<div><h3>{k}</h3><div class="chips">{"".join(f"<span>{x}</span>" for x in v)}</div></div>'
         for k, v in L["integ"]
     )
+    shots = "".join(shot(n, lang, c, c, cls) for n, cls, c in X["shots"])
     return f"""{pagehead(L, X, lang, "product", X["product_e"], L["product_h"], L["product_p"])}</div>
+<section class="alt"><div class="wrap sec tight stack" style="gap:28px"><div class="head"><h2 class="display">{X["shots_h"]}</h2><p>{X["shots_p"]}</p></div><div class="shots">{shots}</div></div></section>
 <section><div class="wrap sec tight stack" style="gap:28px"><h2 class="plain">{X["pages_h"]}</h2><div class="grid">{grid}</div></div></section>
 <section class="alt"><div class="wrap sec tight stack" style="gap:28px"><h2 class="plain">{X["integ_h"]}</h2><div class="integ">{integ}</div></div></section>
 <section class="band"><div class="wrap closing stack"><div class="head"><span class="eyebrow">{X["deploy_e"]}</span><h2 class="display">{L["deploy_h"]}</h2><p>{L["deploy_p"]}</p></div>
